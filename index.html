@@ -94,17 +94,37 @@
     display: inline-block;
   }
 
-  /* ---------- THEME BUTTON ---------- */
-  .theme-btn {
-    background: none; border: none; color: var(--ink-2);
-    cursor: pointer; display: flex; align-items: center; justify-content: center;
-    padding: 6px; border-radius: 50%; margin-left: 14px;
-    transition: background 0.2s, color 0.2s;
+  /* ---------- THEME SWITCH ---------- */
+  .theme-switch {
+    position: relative;
+    width: 58px; height: 30px;
+    background: var(--bg-alt);
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    margin-left: 14px;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 7px;
+    transition: border-color 0.3s;
   }
-  .theme-btn:hover { background: var(--bg-alt); color: var(--ink); }
-  [data-theme="dark"] .theme-btn .moon-icon { display: none; }
-  [data-theme="dark"] .theme-btn .sun-icon { display: block; }
-  :root:not([data-theme="dark"]) .theme-btn .sun-icon { display: none; }
+  .theme-switch:hover { border-color: var(--ink-3); }
+  .theme-switch svg { position: relative; z-index: 2; transition: color 0.3s; width: 14px; height: 14px; }
+  .theme-thumb {
+    position: absolute;
+    top: 2px; left: 3px;
+    width: 24px; height: 24px;
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    box-shadow: var(--shadow-sm);
+    z-index: 1;
+    transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+  [data-theme="dark"] .theme-switch .theme-thumb { transform: translateX(26px); }
+  :root:not([data-theme="dark"]) .theme-switch .sun-icon { color: var(--navy); }
+  :root:not([data-theme="dark"]) .theme-switch .moon-icon { color: var(--ink-3); }
+  [data-theme="dark"] .theme-switch .sun-icon { color: var(--ink-3); }
+  [data-theme="dark"] .theme-switch .moon-icon { color: var(--ink); }
 
   /* ---------- NAV ---------- */
   header.nav {
@@ -623,9 +643,10 @@
       <div class="brand">
         <span class="mark"></span>
         <span>LiDAR-Nav-Robot</span>
-        <button id="theme-toggle" class="theme-btn" aria-label="Toggle dark mode">
-          <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
-          <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+        <button id="theme-toggle" class="theme-switch" aria-label="Toggle dark mode">
+          <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+          <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+          <div class="theme-thumb"></div>
         </button>
       </div>
       <nav class="nav-links">
