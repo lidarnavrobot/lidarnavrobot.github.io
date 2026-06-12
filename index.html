@@ -593,6 +593,13 @@
   .faq-item[open] summary::after { transform: rotate(45deg); }
   .faq-content { padding: 0 24px 24px; color: var(--ink-2); font-size: 0.95rem; line-height: 1.6; }
 
+  /* ---------- SPECS ---------- */
+  .specs-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; margin-top: 40px; box-shadow: var(--shadow-sm); }
+  .spec-item { background: var(--card-bg); padding: 24px 30px; display: flex; align-items: center; justify-content: space-between; gap: 20px; transition: background 0.3s; }
+  .spec-item:hover { background: var(--bg-alt); }
+  .spec-lbl { color: var(--ink-2); font-size: 0.95rem; font-weight: 500; }
+  .spec-val { color: var(--ink); font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 1.05rem; text-align: right; }
+
   /* ---------- FOOTER ---------- */
   footer {
     background: var(--bg);
@@ -630,6 +637,7 @@
 
   /* ---------- RESPONSIVE ---------- */
   @media (max-width: 980px) {
+    .specs-grid { grid-template-columns: 1fr; }
     .hero-grid { grid-template-columns: 1fr; gap: 20px; text-align: center; padding: 40px 0; }
     .hero { min-height: auto; padding-top: 110px; padding-bottom: 60px; }
     .hero-sub { margin-left: auto; margin-right: auto; }
@@ -970,6 +978,27 @@
           <h3>Actuation</h3>
           <p>L298N drivers control motors for smooth, calculated movement.</p>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TECH SPECS -->
+  <section class="block" id="specs">
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <span class="eyebrow">Specifications</span>
+        <h2>Technical Data</h2>
+        <p>Key performance metrics and hardware capabilities.</p>
+      </div>
+      <div class="specs-grid reveal" style="transition-delay:.1s">
+        <div class="spec-item"><span class="spec-lbl">Navigation System</span><span class="spec-val">2D LiDAR SLAM (KISS-ICP)</span></div>
+        <div class="spec-item"><span class="spec-lbl">LiDAR Range</span><span class="spec-val">12 Meters (360°)</span></div>
+        <div class="spec-item"><span class="spec-lbl">Compute Unit</span><span class="spec-val">Raspberry Pi 4</span></div>
+        <div class="spec-item"><span class="spec-lbl">Max Speed</span><span class="spec-val">~1.0 m/s</span></div>
+        <div class="spec-item"><span class="spec-lbl">Operating Time</span><span class="spec-val">4 - 6 Hours</span></div>
+        <div class="spec-item"><span class="spec-lbl">Obstacle Avoidance</span><span class="spec-val">Dynamic / Real-Time</span></div>
+        <div class="spec-item"><span class="spec-lbl">Voice Interface</span><span class="spec-val">Whisper STT & Piper TTS</span></div>
+        <div class="spec-item"><span class="spec-lbl">Drive Type</span><span class="spec-val">Differential Drive (2WD)</span></div>
       </div>
     </div>
   </section>
