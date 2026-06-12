@@ -567,6 +567,32 @@
     font-weight: 600;
   }
 
+  /* ---------- USE CASES ---------- */
+  .use-cases-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+  .use-case-card { background: var(--card-bg); border: 1px solid var(--line); border-radius: var(--radius); padding: 30px 24px; text-align: center; transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s; }
+  .use-case-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); border-color: var(--accent); }
+  .use-case-icon { width: 50px; height: 50px; border-radius: 12px; background: var(--bg-alt); display: grid; place-items: center; margin: 0 auto 16px; color: var(--ink); border: 1px solid var(--line); }
+  .use-case-card h3 { font-size: 1.1rem; margin-bottom: 8px; }
+  .use-case-card p { font-size: 0.9rem; color: var(--ink-2); }
+
+  /* ---------- ARCHITECTURE ---------- */
+  .arch-container { background: var(--card-bg); border: 1px solid var(--line); border-radius: var(--radius); padding: 40px; display: flex; align-items: center; justify-content: space-between; gap: 20px; overflow-x: auto; box-shadow: var(--shadow-sm); }
+  .arch-node { flex: 1; min-width: 140px; text-align: center; position: relative; }
+  .arch-icon { width: 64px; height: 64px; margin: 0 auto 16px; border-radius: 16px; background: var(--bg-alt); display: grid; place-items: center; color: var(--accent); border: 1px solid var(--line); }
+  .arch-node h3 { font-size: 1.05rem; margin-bottom: 6px; }
+  .arch-node p { font-size: 0.85rem; color: var(--ink-2); }
+  .arch-arrow { color: var(--ink-3); flex-shrink: 0; }
+
+  /* ---------- FAQ ---------- */
+  .faq-list { max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: 14px; }
+  .faq-item { background: var(--card-bg); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; transition: border-color 0.3s; }
+  .faq-item:hover { border-color: var(--ink-3); }
+  .faq-item summary { padding: 22px 24px; font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 1.1rem; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; color: var(--ink); }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary::after { content: "+"; font-size: 1.4rem; color: var(--accent); transition: transform 0.3s; }
+  .faq-item[open] summary::after { transform: rotate(45deg); }
+  .faq-content { padding: 0 24px 24px; color: var(--ink-2); font-size: 0.95rem; line-height: 1.6; }
+
   /* ---------- FOOTER ---------- */
   footer {
     background: var(--bg);
@@ -610,17 +636,21 @@
     .hero-cta-row, .hero-meta { justify-content: center; }
     .hero-right { order: -1; }
     .feature-grid { grid-template-columns: repeat(2, 1fr); }
+    .use-cases-grid { grid-template-columns: repeat(2, 1fr); }
     .team-grid { grid-template-columns: repeat(2, 1fr); }
     .tech-grid { grid-template-columns: 1fr; }
     .steps { grid-template-columns: 1fr; gap: 50px; }
     .steps-line { display: none; }
     .nav-links { display: none; }
     .scroll-hint { display: none; }
+    .arch-container { flex-direction: column; padding: 30px; }
+    .arch-arrow { transform: rotate(90deg); margin: 10px 0; }
   }
   @media (max-width: 560px) {
     .wrap { padding: 0 20px; }
     .nav-inner { padding: 0 20px; }
     .feature-grid { grid-template-columns: 1fr; }
+    .use-cases-grid { grid-template-columns: 1fr; }
     .team-grid { grid-template-columns: 1fr; }
     section.block { padding: 80px 0; }
     .hero-meta { flex-wrap: wrap; gap: 20px; }
@@ -795,6 +825,52 @@
     </div>
   </section>
 
+  <!-- USE CASES -->
+  <section class="block alt" id="use-cases">
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <span class="eyebrow">Deploy Anywhere</span>
+        <h2>Versatile Applications</h2>
+        <p>LiDAR-Nav-Robot is designed to excel in various complex indoor environments.</p>
+      </div>
+      <div class="use-cases-grid reveal" style="transition-delay:.1s">
+        
+        <div class="use-case-card">
+          <div class="use-case-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><path d="M9 17h6"/><circle cx="17" cy="17" r="2"/></svg>
+          </div>
+          <h3>Hospitals</h3>
+          <p>Guide patients and visitors safely through complex corridors and crowded waiting areas.</p>
+        </div>
+
+        <div class="use-case-card">
+          <div class="use-case-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.2-1.1.7l-1.2 3.6 6 3.1-4 4-2.8-.7L1 18l5.5 1.5 1.5 5.5 1.1-1.1-.7-2.8 4-4 3.1 6 3.6-1.2c.5-.2.8-.6.7-1.1z"/></svg>
+          </div>
+          <h3>Airports</h3>
+          <p>Help travelers find their gates, lounges, or baggage claims without getting lost.</p>
+        </div>
+
+        <div class="use-case-card">
+          <div class="use-case-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+          </div>
+          <h3>Warehouses</h3>
+          <p>Transport materials or guide staff to specific inventory locations autonomously.</p>
+        </div>
+
+        <div class="use-case-card">
+          <div class="use-case-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          </div>
+          <h3>Corporate Campuses</h3>
+          <p>Welcome guests and escort them directly to meeting rooms in large office buildings.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
   <!-- HOW IT WORKS -->
   <section class="block dark" id="how">
     <div class="wrap">
@@ -864,6 +940,92 @@
             <li><span class="bullet"></span>ROS2 <span class="meta">Middleware</span></li>
           </ul>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SYSTEM ARCHITECTURE -->
+  <section class="block alt" id="architecture">
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <span class="eyebrow">Under The Hood</span>
+        <h2>System Architecture</h2>
+        <p>A seamless flow from environmental perception to physical motion.</p>
+      </div>
+      <div class="arch-container reveal" style="transition-delay:.1s">
+        <div class="arch-node">
+          <div class="arch-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg></div>
+          <h3>Perception</h3>
+          <p>RPLidar & IMU gather 360° point clouds and motion data.</p>
+        </div>
+        <div class="arch-arrow"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+        <div class="arch-node">
+          <div class="arch-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/></svg></div>
+          <h3>Compute</h3>
+          <p>Raspberry Pi processes SLAM (KISS-ICP) and Path Planning.</p>
+        </div>
+        <div class="arch-arrow"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+        <div class="arch-node">
+          <div class="arch-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></div>
+          <h3>Actuation</h3>
+          <p>L298N drivers control motors for smooth, calculated movement.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAM -->
+  <section class="block features-bg" id="team">
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <span class="eyebrow">The Creators</span>
+        <h2>Meet The Team</h2>
+        <p>The engineers and developers behind the LiDAR-Nav-Robot project.</p>
+      </div>
+      <div class="team-grid reveal" style="transition-delay:.1s">
+        <!-- Team members -->
+        <div class="team-card"><div class="avatar">MY</div><h3>Mervan Deniz YILDIRIM</h3><span class="role">Project Member</span></div>
+        <div class="team-card"><div class="avatar">EE</div><h3>Ertuğrul ERGÜL</h3><span class="role">Project Member</span></div>
+        <div class="team-card"><div class="avatar">SH</div><h3>Sayed Khalilullah HASHIMI</h3><span class="role">Project Member</span></div>
+        <div class="team-card"><div class="avatar">HK</div><h3>Hicran KOÇ</h3><span class="role">Project Member</span></div>
+        <div class="team-card"><div class="avatar">FO</div><h3>Fatih Emre OĞAN</h3><span class="role">Project Member</span></div>
+        <div class="team-card"><div class="avatar">MÖ</div><h3>Muhammet Gökhan ÖZBEK</h3><span class="role">Project Member</span></div>
+        <div class="team-card"><div class="avatar">SA</div><h3>Samet ALKAN</h3><span class="role">Project Member</span></div>
+        <div class="team-card"><div class="avatar">ÖG</div><h3>Ömer Faruk GÜRSEL</h3><span class="role">Project Member</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="block alt" id="faq">
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <span class="eyebrow">FAQ</span>
+        <h2>Frequently Asked Questions</h2>
+        <p>Everything you need to know about our autonomous solution.</p>
+      </div>
+      <div class="faq-list reveal" style="transition-delay:.1s">
+        
+        <details class="faq-item">
+          <summary>Does the robot require an active internet connection to navigate?</summary>
+          <div class="faq-content">No. Once the initial map is built and loaded, all LiDAR SLAM computations and path planning run entirely on the local Raspberry Pi. Internet is only required for optional cloud-based features like speech-to-text processing, but core navigation is 100% offline.</div>
+        </details>
+        
+        <details class="faq-item">
+          <summary>How long does the battery last on a single charge?</summary>
+          <div class="faq-content">Under continuous active navigation (LiDAR spinning, continuous compute, and motor driving), the robot achieves approximately 4-6 hours of runtime. We are currently developing an auto-docking charging station for 24/7 deployment.</div>
+        </details>
+        
+        <details class="faq-item">
+          <summary>Can it avoid dynamic obstacles like moving people?</summary>
+          <div class="faq-content">Yes. The RPLidar A2 spins at multiple times per second, providing real-time point clouds. The navigation stack continuously evaluates the path ahead. If a person or sudden obstacle appears, the robot stops or recalculates a safe route around them instantly.</div>
+        </details>
+        
+        <details class="faq-item">
+          <summary>Is the speech interface available in multiple languages?</summary>
+          <div class="faq-content">Currently, the Whisper STT and Piper TTS integration supports English perfectly. However, the models can easily be swapped or extended to support dozens of other languages depending on deployment region.</div>
+        </details>
+
       </div>
     </div>
   </section>
