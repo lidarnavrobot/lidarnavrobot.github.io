@@ -188,11 +188,31 @@
   .nav-links a {
     text-decoration: none;
     color: var(--ink-2);
-    font-size: 0.92rem;
+    font-size: 0.95rem;
     font-weight: 500;
-    transition: color 0.2s;
+    transition: color 0.3s;
   }
   .nav-links a:hover { color: var(--ink); }
+
+  /* Lang Toggle Button */
+  .lang-toggle {
+    background: transparent;
+    border: 1px solid var(--line);
+    color: var(--ink);
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    padding: 6px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .lang-toggle:hover {
+    border-color: var(--ink-2);
+  }
+
   .nav-cta {
     background: var(--accent);
     color: #fff !important;
@@ -609,6 +629,51 @@
   .spec-lbl { color: var(--ink-2); font-size: 0.95rem; font-weight: 500; }
   .spec-val { color: var(--ink); font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 1.05rem; text-align: right; }
 
+  /* ---------- TERMINAL ANIMATION ---------- */
+  .terminal-wrapper {
+    max-width: 800px;
+    margin: 0 auto;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    background: #0a0a0a;
+    border: 1px solid #333;
+    font-family: 'Courier New', Courier, monospace;
+  }
+  .terminal-header {
+    background: #1a1a1a;
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #333;
+  }
+  .term-dots { display: flex; gap: 6px; }
+  .term-dots span { display: block; width: 12px; height: 12px; border-radius: 50%; }
+  .td-red { background: #ff5f56; }
+  .td-yellow { background: #ffbd2e; }
+  .td-green { background: #27c93f; }
+  .term-title {
+    flex-grow: 1;
+    text-align: center;
+    color: #888;
+    font-size: 0.85rem;
+  }
+  .terminal-content {
+    padding: 15px;
+    height: 200px;
+    overflow-y: auto;
+    color: #27c93f;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    text-align: left;
+    white-space: pre-wrap;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+  .term-line { opacity: 0; animation: fadeIn 0.1s forwards; margin-bottom: 4px; }
+  @keyframes fadeIn { to { opacity: 1; } }
+
   /* ---------- SCROLL TO TOP ---------- */
   .scroll-top-btn {
     position: fixed;
@@ -674,10 +739,14 @@
   @media (prefers-reduced-motion: reduce) {
     .reveal, .reveal-left, .reveal-right, .reveal-scale { opacity: 1 !important; transform: none !important; }
     .robot-img, .robot-shadow, .robot-glow, .robot-chip { animation: none !important; }
-    html { scroll-behavior: auto; }
+    html { scroll-behavior: smooth; }
   }
 
-  /* ---------- RESPONSIVE ---------- */
+  /* ---------- MULTILINGUAL ---------- */
+  html[lang="en"] .tr { display: none !important; }
+  html[lang="tr"] .en { display: none !important; }
+
+  /* ---------- GLOBALS ---------- */
   @media (max-width: 980px) {
     .specs-grid { grid-template-columns: 1fr; }
     .hero-grid { grid-template-columns: 1fr; gap: 20px; text-align: center; padding: 40px 0; }
@@ -730,17 +799,23 @@
         </button>
       </div>
       <nav class="nav-links">
-        <a href="#features">Features</a>
-        <a href="#use-cases">Use Cases</a>
-        <a href="#tech">Tech Stack</a>
-        <a href="#specs">Specs</a>
-        <a href="#team">Team</a>
-        <a href="#faq">FAQ</a>
+        <a href="#features"><span class="en">Features</span><span class="tr">Özellikler</span></a>
+        <a href="#use-cases"><span class="en">Use Cases</span><span class="tr">Kullanım</span></a>
+        <a href="#tech"><span class="en">Tech Stack</span><span class="tr">Altyapı</span></a>
+        <a href="#specs"><span class="en">Specs</span><span class="tr">Teknik Veriler</span></a>
+        <a href="#team"><span class="en">Team</span><span class="tr">Takım</span></a>
+        <a href="#faq"><span class="en">FAQ</span><span class="tr">S.S.S.</span></a>
+        
+        <button id="langToggleBtn" class="lang-toggle" aria-label="Toggle language">
+          <span class="en">TR</span>
+          <span class="tr">EN</span>
+        </button>
+
         <a href="https://www.youtube.com/@LidarGuidedNavigationRobot" target="_blank" rel="noopener" class="nav-yt" aria-label="YouTube channel">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.5a3.02 3.02 0 0 0-2.12-2.14C19.5 3.85 12 3.85 12 3.85s-7.5 0-9.38.51A3.02 3.02 0 0 0 .5 6.5C0 8.4 0 12 0 12s0 3.6.5 5.5a3.02 3.02 0 0 0 2.12 2.14c1.88.51 9.38.51 9.38.51s7.5 0 9.38-.51A3.02 3.02 0 0 0 23.5 17.5c.5-1.9.5-5.5.5-5.5s0-3.6-.5-5.5zM9.6 15.6V8.4l6.2 3.6-6.2 3.6z"/></svg>
           YouTube
         </a>
-        <a href="#demo" class="nav-cta">Watch Demo</a>
+        <a href="#demo" class="nav-cta"><span class="en">Watch Demo</span><span class="tr">Demoyu İzle</span></a>
       </nav>
     </div>
   </header>
@@ -751,21 +826,27 @@
     <div class="wrap">
       <div class="hero-grid">
         <div class="hero-left">
-          <span class="eyebrow reveal">Autonomous Indoor Mobility</span>
-          <h1 class="reveal" style="transition-delay:.05s">LiDAR-Guided <span class="grad">Hospital Navigation</span> Robot</h1>
-          <p class="hero-sub reveal" style="transition-delay:.12s">An autonomous robot that safely guides hospital visitors to their destination using LiDAR, SLAM, and voice commands.</p>
+          <span class="eyebrow reveal"><span class="en">Autonomous Indoor Mobility</span><span class="tr">Otonom İç Mekan Mobilitesi</span></span>
+          <h1 class="reveal" style="transition-delay:.05s">
+            <span class="en">LiDAR-Guided <span class="grad">Hospital Navigation</span> Robot</span>
+            <span class="tr">LiDAR Yönlendirmeli <span class="grad">Hastane Navigasyon</span> Robotu</span>
+          </h1>
+          <p class="hero-sub reveal" style="transition-delay:.12s">
+            <span class="en">An autonomous robot that safely guides hospital visitors to their destination using LiDAR, SLAM, and voice commands.</span>
+            <span class="tr">Hastane ziyaretçilerini LiDAR, SLAM ve sesli komutlar kullanarak hedeflerine güvenle ulaştıran otonom robot.</span>
+          </p>
           <div class="hero-cta-row reveal" style="transition-delay:.18s">
             <a href="#demo" class="btn btn-primary">
               <span class="play">
                 <svg width="10" height="12" viewBox="0 0 10 12" fill="none"><path d="M0 0.8v10.4l9-5.2L0 0.8z" fill="#fff"/></svg>
               </span>
-              Watch Demo
+              <span class="en">Watch Demo</span><span class="tr">Demoyu İzle</span>
             </a>
           </div>
           <div class="hero-meta reveal" style="transition-delay:.24s">
-            <div class="stat"><div class="num">360°</div><div class="lbl">LiDAR Scan</div></div>
-            <div class="stat"><div class="num">Real-Time</div><div class="lbl">SLAM Mapping</div></div>
-            <div class="stat"><div class="num">Voice</div><div class="lbl">Controlled</div></div>
+            <div class="stat"><div class="num">360°</div><div class="lbl"><span class="en">LiDAR Scan</span><span class="tr">LiDAR Taraması</span></div></div>
+            <div class="stat"><div class="num"><span class="en">Real-Time</span><span class="tr">Eşzamanlı</span></div><div class="lbl"><span class="en">SLAM Mapping</span><span class="tr">SLAM Haritalama</span></div></div>
+            <div class="stat"><div class="num"><span class="en">Voice</span><span class="tr">Sesli</span></div><div class="lbl"><span class="en">Controlled</span><span class="tr">Kontrol</span></div></div>
           </div>
         </div>
         <div class="hero-right">
@@ -786,15 +867,15 @@
   <section class="block dark" id="demo">
     <div class="wrap">
       <div class="section-head center reveal">
-        <span class="eyebrow">Live Demonstration</span>
-        <h2>See the robot navigate</h2>
-        <p>Watch our prototype localize itself, plan a route, and guide a visitor through a real corridor.</p>
+        <span class="eyebrow"><span class="en">Live Demonstration</span><span class="tr">Canlı Gösterim</span></span>
+        <h2><span class="en">See the robot navigate</span><span class="tr">Robotun sürüşünü izleyin</span></h2>
+        <p><span class="en">Watch our prototype localize itself, plan a route, and guide a visitor through a real corridor.</span><span class="tr">Prototipimizin kendini konumlandırmasını, rota planlamasını ve bir ziyaretçiye gerçek bir koridorda rehberlik etmesini izleyin.</span></p>
       </div>
       <div class="video-card reveal" style="transition-delay:.1s">
         <iframe src="https://www.youtube.com/embed/6H9Xc4hRhOg?rel=0" title="Hospital Navigation Robot Demo" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </div>
       <div class="video-frame-label reveal">
-        <span>FIELD TEST · CORRIDOR RUN</span>
+        <span><span class="en">FIELD TEST · CORRIDOR RUN</span><span class="tr">SAHA TESTİ · KORİDOR SÜRÜŞÜ</span></span>
       </div>
     </div>
   </section>
@@ -803,9 +884,9 @@
   <section class="block features-bg" id="features">
     <div class="wrap">
       <div class="section-head reveal">
-        <span class="eyebrow">Capabilities</span>
-        <h2>Engineered to move safely<br>through crowded spaces</h2>
-        <p>Eight tightly integrated systems work together so the robot can perceive, plan, and move through a busy hospital without human input.</p>
+        <span class="eyebrow"><span class="en">Capabilities</span><span class="tr">Yetenekler</span></span>
+        <h2><span class="en">Engineered to move safely<br>through crowded spaces</span><span class="tr">Kalabalık alanlarda güvenle hareket<br>etmek için tasarlandı</span></h2>
+        <p><span class="en">Eight tightly integrated systems work together so the robot can perceive, plan, and move through a busy hospital without human input.</span><span class="tr">Entegre alt sistemler, robotun yoğun bir hastanede insan müdahalesi olmadan çevreyi algılaması, rota planlaması ve hareket etmesi için birlikte çalışır.</span></p>
       </div>
       <div class="feature-grid reveal">
         <div class="feature-card reveal" data-stagger>
@@ -813,64 +894,64 @@
             <svg width="26" height="26" viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="13" cy="13" r="2.2" fill="currentColor" stroke="none"/><path d="M13 5.5a7.5 7.5 0 0 1 7.5 7.5M13 9a4 4 0 0 1 4 4M13 1.5A11.5 11.5 0 0 1 24.5 13"/></svg>
           </div>
           <span class="feature-num">01</span>
-          <h3>360° LiDAR Scanning</h3>
-          <p>A rotating RPLidar A2 sensor sweeps a full circle several times per second, building a dense point cloud of everything around the robot. It detects walls, doorways, furniture and moving people in every direction at once. This continuous awareness is the foundation for both mapping and safe motion.</p>
+          <h3><span class="en">360° LiDAR Scanning</span><span class="tr">360° LiDAR Taraması</span></h3>
+          <p><span class="en">A rotating RPLidar A2 sensor sweeps a full circle several times per second, building a dense point cloud of everything around the robot. It detects walls, doorways, furniture and moving people in every direction at once. This continuous awareness is the foundation for both mapping and safe motion.</span><span class="tr">Dönen RPLidar A2 sensörü saniyede birkaç kez tam bir daire çizerek robotun etrafındaki her şeyin yoğun bir nokta bulutunu oluşturur. Duvarları, kapıları ve hareket eden insanları eşzamanlı olarak algılar. Bu sürekli farkındalık, hem haritalama hem de güvenli hareket için temel oluşturur.</span></p>
         </div>
         <div class="feature-card reveal" data-stagger>
           <div class="feature-icon">
             <svg width="26" height="26" viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 6.5v6c0 6 4.3 9.6 10 11.5 5.7-1.9 10-5.5 10-11.5v-6L13 2z"/><path d="M9.5 13l2.4 2.4L17 10"/></svg>
           </div>
           <span class="feature-num">02</span>
-          <h3>Obstacle Detection &amp; Rerouting</h3>
-          <p>When a person steps into the path or a corridor is blocked, the robot detects the obstruction instantly from its live scan. It recalculates a safe alternative route on the fly and eases onto the new trajectory without abrupt stops. Visitors are guided smoothly even through changing, crowded spaces.</p>
+          <h3><span class="en">Obstacle Detection &amp; Rerouting</span><span class="tr">Engel Algılama ve Yeniden Rotalama</span></h3>
+          <p><span class="en">When a person steps into the path or a corridor is blocked, the robot detects the obstruction instantly from its live scan. It recalculates a safe alternative route on the fly and eases onto the new trajectory without abrupt stops. Visitors are guided smoothly even through changing, crowded spaces.</span><span class="tr">Biri yola çıktığında veya koridor kapandığında robot bunu anında algılar. Anında güvenli bir alternatif rota hesaplar ve ani duruşlar yapmadan yeni rotaya geçer. Ziyaretçiler kalabalık alanlarda bile sorunsuzca yönlendirilir.</span></p>
         </div>
         <div class="feature-card reveal" data-stagger>
           <div class="feature-icon">
             <svg width="26" height="26" viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="9.5" y="2" width="7" height="12" rx="3.5"/><path d="M5.5 12a7.5 7.5 0 0 0 15 0M13 19.5V23M9 23h8"/></svg>
           </div>
           <span class="feature-num">03</span>
-          <h3>Voice Command Interface</h3>
-          <p>Visitors simply speak their destination in natural language. Whisper transcribes the request on-device and maps it to a known location on the floor plan. Piper then replies with clear spoken guidance, making the robot approachable for people of any age or ability.</p>
+          <h3><span class="en">Voice Command Interface</span><span class="tr">Sesli Komut Arayüzü</span></h3>
+          <p><span class="en">Visitors simply speak their destination in natural language. Whisper transcribes the request on-device and maps it to a known location on the floor plan. Piper then replies with clear spoken guidance, making the robot approachable for people of any age or ability.</span><span class="tr">Ziyaretçiler gitmek istedikleri yeri doğal bir dille söylerler. Whisper, isteği cihaz üzerinde metne döker ve haritadaki bir hedefle eşleştirir. Piper daha sonra net bir sesli yönlendirme ile cevap verir, böylece robot herkes için erişilebilir olur.</span></p>
         </div>
         <div class="feature-card reveal" data-stagger>
           <div class="feature-icon">
             <svg width="26" height="26" viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 23s8-6.3 8-12.5A8 8 0 0 0 5 10.5C5 16.7 13 23 13 23z"/><circle cx="13" cy="10.5" r="2.6"/></svg>
           </div>
           <span class="feature-num">04</span>
-          <h3>Real-Time SLAM Localization</h3>
-          <p>KISS-ICP continuously matches incoming LiDAR scans against the map to estimate the robot's pose in real time. Fused with motion data, it tracks the exact position and heading as the robot moves. The result is reliable localization indoors, where GPS is unavailable.</p>
+          <h3><span class="en">Real-Time SLAM Localization</span><span class="tr">Gerçek Zamanlı SLAM Konumlandırma</span></h3>
+          <p><span class="en">KISS-ICP continuously matches incoming LiDAR scans against the map to estimate the robot's pose in real time. Fused with motion data, it tracks the exact position and heading as the robot moves. The result is reliable localization indoors, where GPS is unavailable.</span><span class="tr">KISS-ICP, robotun konumunu gerçek zamanlı olarak tahmin etmek için gelen LiDAR taramalarını haritayla sürekli eşleştirir. Hareket verileriyle birleştiğinde, GPS'in olmadığı kapalı alanlarda son derece güvenilir bir konumlandırma sağlar.</span></p>
         </div>
         <div class="feature-card reveal" data-stagger>
           <div class="feature-icon">
             <svg width="26" height="26" viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="21" r="2.4"/><circle cx="21" cy="5" r="2.4"/><path d="M7.4 21H15a4 4 0 0 0 0-8H11a4 4 0 0 1 0-8h7.6" stroke-dasharray="0.1 3.4"/></svg>
           </div>
           <span class="feature-num">05</span>
-          <h3>Autonomous Path Planning</h3>
-          <p>The A* algorithm computes the optimal collision-free route in real time on a pre-built 2D occupancy grid of the hospital floor. It weighs distance against clearance from walls and obstacles to choose the safest practical path. Routes are re-planned whenever the environment changes.</p>
+          <h3><span class="en">Autonomous Path Planning</span><span class="tr">Otonom Rota Planlama</span></h3>
+          <p><span class="en">The A* algorithm computes the optimal collision-free route in real time on a pre-built 2D occupancy grid of the hospital floor. It weighs distance against clearance from walls and obstacles to choose the safest practical path. Routes are re-planned whenever the environment changes.</span><span class="tr">A* algoritması, hastane katının önceden oluşturulmuş 2B haritası üzerinde en uygun çarpışmasız rotayı hesaplar. En güvenli yolu seçmek için mesafeyi duvarlardan ve engellerden uzaklıkla tartar. Çevre değiştiğinde rotalar anında yeniden planlanır.</span></p>
         </div>
         <div class="feature-card reveal" data-stagger>
           <div class="feature-icon">
             <svg width="26" height="26" viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="6"/><circle cx="16" cy="16" r="6"/></svg>
           </div>
           <span class="feature-num">06</span>
-          <h3>Sensor Fusion</h3>
-          <p>Wheel odometry, IMU gyroscope, and LiDAR scan matching are fused together to maintain an accurate position even without GPS. Each sensor compensates for the others' weaknesses, so brief slips or noisy readings don't throw off the estimate. The combined pose stays stable across long indoor runs.</p>
+          <h3><span class="en">Sensor Fusion</span><span class="tr">Sensör Füzyonu</span></h3>
+          <p><span class="en">Wheel odometry, IMU gyroscope, and LiDAR scan matching are fused together to maintain an accurate position even without GPS. Each sensor compensates for the others' weaknesses, so brief slips or noisy readings don't throw off the estimate. The combined pose stays stable across long indoor runs.</span><span class="tr">Tekerlek odometrisi, IMU jiroskopu ve LiDAR tarama eşleştirmesi, GPS olmadan bile doğru konumu korumak için birlikte harmanlanır. Her sensör diğerinin zayıflığını telafi eder, böylece gürültülü veriler tahminleri bozmaz. Birleştirilmiş konum, uzun iç mekan sürüşlerinde sabit kalır.</span></p>
         </div>
         <div class="feature-card reveal" data-stagger>
           <div class="feature-icon">
             <svg width="26" height="26" viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="13" cy="13" r="7.5"/><circle cx="13" cy="13" r="2" fill="currentColor" stroke="none"/><path d="M13 1.5v4M13 20.5v4M1.5 13h4M20.5 13h4"/></svg>
           </div>
           <span class="feature-num">07</span>
-          <h3>Drift Correction</h3>
-          <p>At corridor junctions the robot performs LiDAR scan-to-map matching and snaps its pose to known checkpoints. This eliminates the small errors that accumulate over time from wheel slip and sensor noise. Over a full journey, the robot's position stays locked to the real floor plan.</p>
+          <h3><span class="en">Drift Correction</span><span class="tr">Kayma Düzeltmesi</span></h3>
+          <p><span class="en">At corridor junctions the robot performs LiDAR scan-to-map matching and snaps its pose to known checkpoints. This eliminates the small errors that accumulate over time from wheel slip and sensor noise. Over a full journey, the robot's position stays locked to the real floor plan.</span><span class="tr">Koridor kavşaklarında robot, LiDAR taramalarını haritayla eşleştirerek konumunu bilinen kontrol noktalarına kilitler. Bu, tekerlek kayması ve sensör gürültüsünden zamanla biriken küçük hataları ortadan kaldırır. Tüm yolculuk boyunca robotun konumu gerçek kat planına kilitli kalır.</span></p>
         </div>
         <div class="feature-card reveal" data-stagger>
           <div class="feature-icon">
             <svg width="26" height="26" viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4" width="21" height="14" rx="2"/><path d="M9 22h8M13 18v4M7 9l3 2.5L7 14M14 14h5"/></svg>
           </div>
           <span class="feature-num">08</span>
-          <h3>Digital Twin</h3>
-          <p>A real-time 3D visualization mirrors the robot's position, heading, and sensor readings on a live floor map. Operators can monitor every active robot from one screen and spot issues before they affect visitors. It turns raw telemetry into an at-a-glance picture of the fleet.</p>
+          <h3><span class="en">Digital Twin</span><span class="tr">Dijital İkiz</span></h3>
+          <p><span class="en">A real-time 3D visualization mirrors the robot's position, heading, and sensor readings on a live floor map. Operators can monitor every active robot from one screen and spot issues before they affect visitors. It turns raw telemetry into an at-a-glance picture of the fleet.</span><span class="tr">Gerçek zamanlı 3B görselleştirme; robotun konumunu, yönünü ve sensör okumalarını canlı bir kat haritasına yansıtır. Operatörler her aktif robotu tek bir ekrandan izleyebilir ve sorunları anında fark edebilir. Ham telemetriyi filonun genel bir resmine dönüştürür.</span></p>
         </div>
       </div>
     </div>
@@ -880,9 +961,9 @@
   <section class="block alt" id="use-cases">
     <div class="wrap">
       <div class="section-head center reveal">
-        <span class="eyebrow">Deploy Anywhere</span>
-        <h2>Versatile Applications</h2>
-        <p>LiDAR-Nav-Robot is designed to excel in various complex indoor environments.</p>
+        <span class="eyebrow"><span class="en">Deploy Anywhere</span><span class="tr">Her Yerde Görevde</span></span>
+        <h2><span class="en">Versatile Applications</span><span class="tr">Çok Yönlü Kullanım Alanları</span></h2>
+        <p><span class="en">LiDAR-Nav-Robot is designed to excel in various complex indoor environments.</span><span class="tr">LiDAR-Nav-Robot, çeşitli karmaşık iç mekan ortamlarında kusursuz çalışmak üzere tasarlanmıştır.</span></p>
       </div>
       <div class="use-cases-grid reveal" style="transition-delay:.1s">
         
@@ -890,32 +971,32 @@
           <div class="use-case-icon">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><path d="M9 17h6"/><circle cx="17" cy="17" r="2"/></svg>
           </div>
-          <h3>Hospitals</h3>
-          <p>Guide patients and visitors safely through complex corridors and crowded waiting areas.</p>
+          <h3><span class="en">Hospitals</span><span class="tr">Hastaneler</span></h3>
+          <p><span class="en">Guide patients and visitors safely through complex corridors and crowded waiting areas.</span><span class="tr">Hastaları ve ziyaretçileri karmaşık koridorlar ve kalabalık bekleme alanlarında güvenle yönlendirin.</span></p>
         </div>
 
         <div class="use-case-card">
           <div class="use-case-icon">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.2-1.1.7l-1.2 3.6 6 3.1-4 4-2.8-.7L1 18l5.5 1.5 1.5 5.5 1.1-1.1-.7-2.8 4-4 3.1 6 3.6-1.2c.5-.2.8-.6.7-1.1z"/></svg>
           </div>
-          <h3>Airports</h3>
-          <p>Help travelers find their gates, lounges, or baggage claims without getting lost.</p>
+          <h3><span class="en">Airports</span><span class="tr">Havalimanları</span></h3>
+          <p><span class="en">Help travelers find their gates, lounges, or baggage claims without getting lost.</span><span class="tr">Yolcuların kapılarını, dinlenme salonlarını veya bagaj alanlarını kaybolmadan bulmalarına yardımcı olun.</span></p>
         </div>
 
         <div class="use-case-card">
           <div class="use-case-icon">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
           </div>
-          <h3>Warehouses</h3>
-          <p>Transport materials or guide staff to specific inventory locations autonomously.</p>
+          <h3><span class="en">Warehouses</span><span class="tr">Depolar</span></h3>
+          <p><span class="en">Transport materials or guide staff to specific inventory locations autonomously.</span><span class="tr">Malzemeleri taşıyın veya personeli otonom olarak belirli envanter konumlarına yönlendirin.</span></p>
         </div>
 
         <div class="use-case-card">
           <div class="use-case-icon">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
           </div>
-          <h3>Corporate Campuses</h3>
-          <p>Welcome guests and escort them directly to meeting rooms in large office buildings.</p>
+          <h3><span class="en">Corporate Campuses</span><span class="tr">Kurumsal Kampüsler</span></h3>
+          <p><span class="en">Welcome guests and escort them directly to meeting rooms in large office buildings.</span><span class="tr">Misafirleri karşılayın ve büyük ofis binalarında doğrudan toplantı odalarına eşlik edin.</span></p>
         </div>
 
       </div>
@@ -926,25 +1007,25 @@
   <section class="block dark" id="how">
     <div class="wrap">
       <div class="section-head center reveal">
-        <span class="eyebrow">How It Works</span>
-        <h2>From spoken request to safe arrival</h2>
+        <span class="eyebrow"><span class="en">How It Works</span><span class="tr">Nasıl Çalışır?</span></span>
+        <h2><span class="en">From spoken request to safe arrival</span><span class="tr">Sözlü komuttan güvenli varışa kadar</span></h2>
       </div>
       <div class="steps" id="steps">
         <div class="steps-line"><div class="fill" id="stepFill"></div></div>
         <div class="step reveal" data-stagger>
           <div class="step-num">1</div>
-          <h3>Voice Command</h3>
-          <p>The visitor says where they want to go. Whisper converts speech to text and extracts the destination.</p>
+          <h3><span class="en">Voice Command</span><span class="tr">Sesli Komut</span></h3>
+          <p><span class="en">The visitor says where they want to go. Whisper converts speech to text and extracts the destination.</span><span class="tr">Ziyaretçi gitmek istediği yeri söyler. Whisper sesi metne dönüştürür ve hedefi belirler.</span></p>
         </div>
         <div class="step reveal" data-stagger>
           <div class="step-num">2</div>
-          <h3>Route Planning</h3>
-          <p>A* searches the SLAM map for the shortest, safest path and hands it to the navigation controller.</p>
+          <h3><span class="en">Route Planning</span><span class="tr">Rota Planlama</span></h3>
+          <p><span class="en">A* searches the SLAM map for the shortest, safest path and hands it to the navigation controller.</span><span class="tr">A* algoritması SLAM haritasında en kısa ve güvenli yolu arar ve navigasyon kontrolcüsüne iletir.</span></p>
         </div>
         <div class="step reveal" data-stagger>
           <div class="step-num">3</div>
-          <h3>Safe Navigation</h3>
-          <p>The robot drives the route, avoiding obstacles in real time while keeping a comfortable pace beside the visitor.</p>
+          <h3><span class="en">Safe Navigation</span><span class="tr">Güvenli Navigasyon</span></h3>
+          <p><span class="en">The robot drives the route, avoiding obstacles in real time while keeping a comfortable pace beside the visitor.</span><span class="tr">Robot engellerden gerçek zamanlı kaçınarak rotayı sürer ve ziyaretçinin yanında uygun bir hızda ilerler.</span></p>
         </div>
       </div>
     </div>
@@ -954,9 +1035,9 @@
   <section class="block tech-bg" id="tech">
     <div class="wrap">
       <div class="section-head center reveal">
-        <span class="eyebrow">Under the Hood</span>
-        <h2>Tech stack</h2>
-        <p>A tightly integrated hardware and software pipeline running on the edge.</p>
+        <span class="eyebrow"><span class="en">Under the Hood</span><span class="tr">Altyapı</span></span>
+        <h2><span class="en">Tech stack</span><span class="tr">Teknolojik Altyapı</span></h2>
+        <p><span class="en">A tightly integrated hardware and software pipeline running on the edge.</span><span class="tr">Cihaz üzerinde çalışan, donanım ve yazılımın tam entegre olduğu bir işlem hattı.</span></p>
       </div>
       <div class="tech-grid">
         <div class="tech-col hw reveal-left">
@@ -964,7 +1045,7 @@
             <div class="tag">
               <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="5" y="5" width="12" height="12" rx="2"/><path d="M8 1.5v3M11 1.5v3M14 1.5v3M8 17.5v3M11 17.5v3M14 17.5v3M1.5 8h3M1.5 11h3M1.5 14h3M17.5 8h3M17.5 11h3M17.5 14h3" stroke-linecap="round"/></svg>
             </div>
-            <div><h3>Hardware</h3><span>Sensing, compute &amp; drive train</span></div>
+            <div><h3><span class="en">Hardware</span><span class="tr">Donanım</span></h3><span><span class="en">Sensing, compute &amp; drive train</span><span class="tr">Algılama, işlem ve sürüş</span></span></div>
           </div>
           <ul class="tech-list">
             <li><span class="bullet"></span>RPLidar A2 <span class="meta">LiDAR</span></li>
@@ -980,7 +1061,7 @@
             <div class="tag">
               <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7.5 6.5 3 11l4.5 4.5M14.5 6.5 19 11l-4.5 4.5M12.5 3.5l-3 15"/></svg>
             </div>
-            <div><h3>Software</h3><span>Perception, planning &amp; voice</span></div>
+            <div><h3><span class="en">Software</span><span class="tr">Yazılım</span></h3><span><span class="en">Perception, planning &amp; voice</span><span class="tr">Algı, planlama ve ses</span></span></div>
           </div>
           <ul class="tech-list">
             <li><span class="bullet"></span>KISS-ICP SLAM <span class="meta">Mapping</span></li>
@@ -992,6 +1073,17 @@
           </ul>
         </div>
       </div>
+
+      <!-- TERMINAL ANIMATION UI -->
+      <div class="terminal-wrapper reveal" style="margin-top:40px;">
+        <div class="terminal-box">
+          <div class="terminal-header">
+            <div class="term-dots"><span class="td-red"></span><span class="td-yellow"></span><span class="td-green"></span></div>
+            <div class="term-title">robot_core.log</div>
+          </div>
+          <div class="terminal-content" id="terminalLog"></div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -999,27 +1091,27 @@
   <section class="block alt" id="architecture">
     <div class="wrap">
       <div class="section-head center reveal">
-        <span class="eyebrow">Under The Hood</span>
-        <h2>System Architecture</h2>
-        <p>A seamless flow from environmental perception to physical motion.</p>
+        <span class="eyebrow"><span class="en">Under The Hood</span><span class="tr">Altyapı</span></span>
+        <h2><span class="en">System Architecture</span><span class="tr">Sistem Mimarisi</span></h2>
+        <p><span class="en">A seamless flow from environmental perception to physical motion.</span><span class="tr">Çevresel algıdan fiziksel harekete kusursuz bir akış.</span></p>
       </div>
       <div class="arch-container reveal" style="transition-delay:.1s">
         <div class="arch-node">
           <div class="arch-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg></div>
-          <h3>Perception</h3>
-          <p>RPLidar & IMU gather 360° point clouds and motion data.</p>
+          <h3><span class="en">1. Perception</span><span class="tr">1. Algılama</span></h3>
+          <p><span class="en">LiDAR &amp; Audio Input</span><span class="tr">LiDAR ve Ses Girişi</span></p>
         </div>
         <div class="arch-arrow"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
         <div class="arch-node">
           <div class="arch-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/></svg></div>
-          <h3>Compute</h3>
-          <p>Raspberry Pi processes SLAM (KISS-ICP) and Path Planning.</p>
+          <h3><span class="en">2. Compute</span><span class="tr">2. İşlem</span></h3>
+          <p><span class="en">SLAM &amp; A* on RasPi 4</span><span class="tr">RasPi 4'te SLAM ve A*</span></p>
         </div>
         <div class="arch-arrow"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
         <div class="arch-node">
           <div class="arch-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></div>
-          <h3>Actuation</h3>
-          <p>L298N drivers control motors for smooth, calculated movement.</p>
+          <h3><span class="en">3. Actuation</span><span class="tr">3. Tahrik</span></h3>
+          <p><span class="en">Motor Controllers</span><span class="tr">Motor Kontrolcüleri</span></p>
         </div>
       </div>
     </div>
@@ -1029,19 +1121,19 @@
   <section class="block" id="specs">
     <div class="wrap">
       <div class="section-head center reveal">
-        <span class="eyebrow">Specifications</span>
-        <h2>Technical Data</h2>
-        <p>Key performance metrics and hardware capabilities.</p>
+        <span class="eyebrow"><span class="en">Specifications</span><span class="tr">Özellikler</span></span>
+        <h2><span class="en">Technical Data</span><span class="tr">Teknik Veriler</span></h2>
+        <p><span class="en">Key performance metrics and hardware capabilities.</span><span class="tr">Temel performans metrikleri ve donanım yetenekleri.</span></p>
       </div>
       <div class="specs-grid reveal" style="transition-delay:.1s">
-        <div class="spec-item"><span class="spec-lbl">Navigation System</span><span class="spec-val">2D LiDAR SLAM (KISS-ICP)</span></div>
-        <div class="spec-item"><span class="spec-lbl">LiDAR Range</span><span class="spec-val">12 Meters (360°)</span></div>
-        <div class="spec-item"><span class="spec-lbl">Compute Unit</span><span class="spec-val">Raspberry Pi 4</span></div>
-        <div class="spec-item"><span class="spec-lbl">Max Speed</span><span class="spec-val">~1.0 m/s</span></div>
-        <div class="spec-item"><span class="spec-lbl">Operating Time</span><span class="spec-val">4 - 6 Hours</span></div>
-        <div class="spec-item"><span class="spec-lbl">Obstacle Avoidance</span><span class="spec-val">Dynamic / Real-Time</span></div>
-        <div class="spec-item"><span class="spec-lbl">Voice Interface</span><span class="spec-val">Whisper STT & Piper TTS</span></div>
-        <div class="spec-item"><span class="spec-lbl">Drive Type</span><span class="spec-val">Differential Drive (2WD)</span></div>
+        <div class="spec-item"><span class="spec-lbl"><span class="en">Navigation System</span><span class="tr">Navigasyon Sistemi</span></span><span class="spec-val">2D LiDAR SLAM (KISS-ICP)</span></div>
+        <div class="spec-item"><span class="spec-lbl"><span class="en">LiDAR Range</span><span class="tr">LiDAR Menzili</span></span><span class="spec-val"><span class="en">12 Meters (360°)</span><span class="tr">12 Metre (360°)</span></span></div>
+        <div class="spec-item"><span class="spec-lbl"><span class="en">Compute Unit</span><span class="tr">İşlem Birimi</span></span><span class="spec-val">Raspberry Pi 4</span></div>
+        <div class="spec-item"><span class="spec-lbl"><span class="en">Max Speed</span><span class="tr">Maks. Hız</span></span><span class="spec-val">~1.0 m/s</span></div>
+        <div class="spec-item"><span class="spec-lbl"><span class="en">Operating Time</span><span class="tr">Çalışma Süresi</span></span><span class="spec-val"><span class="en">4 - 6 Hours</span><span class="tr">4 - 6 Saat</span></span></div>
+        <div class="spec-item"><span class="spec-lbl"><span class="en">Obstacle Avoidance</span><span class="tr">Engelden Kaçınma</span></span><span class="spec-val"><span class="en">Dynamic / Real-Time</span><span class="tr">Dinamik / Eşzamanlı</span></span></div>
+        <div class="spec-item"><span class="spec-lbl"><span class="en">Voice Interface</span><span class="tr">Sesli Arayüz</span></span><span class="spec-val">Whisper STT & Piper TTS</span></div>
+        <div class="spec-item"><span class="spec-lbl"><span class="en">Drive Type</span><span class="tr">Sürüş Tipi</span></span><span class="spec-val"><span class="en">Differential Drive (2WD)</span><span class="tr">Diferansiyel (2WD)</span></span></div>
       </div>
     </div>
   </section>
@@ -1050,20 +1142,20 @@
   <section class="block features-bg" id="team">
     <div class="wrap">
       <div class="section-head center reveal">
-        <span class="eyebrow">The Creators</span>
-        <h2>Meet The Team</h2>
-        <p>The engineers and developers behind the LiDAR-Nav-Robot project.</p>
+        <span class="eyebrow"><span class="en">The Creators</span><span class="tr">Geliştiriciler</span></span>
+        <h2><span class="en">Meet The Team</span><span class="tr">Takımla Tanışın</span></h2>
+        <p><span class="en">The engineers and developers behind the LiDAR-Nav-Robot project.</span><span class="tr">LiDAR-Nav-Robot projesinin arkasındaki mühendisler ve geliştiriciler.</span></p>
       </div>
       <div class="team-grid reveal" style="transition-delay:.1s">
         <!-- Team members -->
-        <div class="team-card"><div class="avatar">FO</div><h3>Fatih Emre OĞAN</h3><span class="role">Project Member</span></div>
-        <div class="team-card"><div class="avatar">ÖG</div><h3>Ömer Faruk GÜRSEL</h3><span class="role">Project Member</span></div>
-        <div class="team-card"><div class="avatar">MY</div><h3>Mervan Deniz YILDIRIM</h3><span class="role">Project Member</span></div>
-        <div class="team-card"><div class="avatar">EE</div><h3>Ertuğrul ERGÜL</h3><span class="role">Project Member</span></div>
-        <div class="team-card"><div class="avatar">HK</div><h3>Hicran KOÇ</h3><span class="role">Project Member</span></div>
-        <div class="team-card"><div class="avatar">MÖ</div><h3>Muhammet Gökhan ÖZBEK</h3><span class="role">Project Member</span></div>
-        <div class="team-card"><div class="avatar">SA</div><h3>Samet ALKAN</h3><span class="role">Project Member</span></div>
-        <div class="team-card"><div class="avatar">SH</div><h3>Sayed Khalilullah HASHIMI</h3><span class="role">Project Member</span></div>
+        <div class="team-card"><div class="avatar">FO</div><h3>Fatih Emre OĞAN</h3><span class="role"><span class="en">Project Member</span><span class="tr">Proje Üyesi</span></span></div>
+        <div class="team-card"><div class="avatar">ÖG</div><h3>Ömer Faruk GÜRSEL</h3><span class="role"><span class="en">Project Member</span><span class="tr">Proje Üyesi</span></span></div>
+        <div class="team-card"><div class="avatar">MY</div><h3>Mervan Deniz YILDIRIM</h3><span class="role"><span class="en">Project Member</span><span class="tr">Proje Üyesi</span></span></div>
+        <div class="team-card"><div class="avatar">EE</div><h3>Ertuğrul ERGÜL</h3><span class="role"><span class="en">Project Member</span><span class="tr">Proje Üyesi</span></span></div>
+        <div class="team-card"><div class="avatar">HK</div><h3>Hicran KOÇ</h3><span class="role"><span class="en">Project Member</span><span class="tr">Proje Üyesi</span></span></div>
+        <div class="team-card"><div class="avatar">MÖ</div><h3>Muhammet Gökhan ÖZBEK</h3><span class="role"><span class="en">Project Member</span><span class="tr">Proje Üyesi</span></span></div>
+        <div class="team-card"><div class="avatar">SA</div><h3>Samet ALKAN</h3><span class="role"><span class="en">Project Member</span><span class="tr">Proje Üyesi</span></span></div>
+        <div class="team-card"><div class="avatar">SH</div><h3>Sayed Khalilullah HASHIMI</h3><span class="role"><span class="en">Project Member</span><span class="tr">Proje Üyesi</span></span></div>
       </div>
     </div>
   </section>
@@ -1072,30 +1164,30 @@
   <section class="block alt" id="faq">
     <div class="wrap">
       <div class="section-head center reveal">
-        <span class="eyebrow">FAQ</span>
-        <h2>Frequently Asked Questions</h2>
-        <p>Everything you need to know about our autonomous solution.</p>
+        <span class="eyebrow"><span class="en">FAQ</span><span class="tr">S.S.S.</span></span>
+        <h2><span class="en">Frequently Asked Questions</span><span class="tr">Sıkça Sorulan Sorular</span></h2>
+        <p><span class="en">Everything you need to know about our autonomous solution.</span><span class="tr">Otonom çözümümüz hakkında bilmeniz gereken her şey.</span></p>
       </div>
       <div class="faq-list reveal" style="transition-delay:.1s">
         
         <details class="faq-item">
-          <summary>Does the robot require an active internet connection to navigate?</summary>
-          <div class="faq-content">No. Once the initial map is built and loaded, all LiDAR SLAM computations and path planning run entirely on the local Raspberry Pi. Internet is only required for optional cloud-based features like speech-to-text processing, but core navigation is 100% offline.</div>
+          <summary><span class="en">Does the robot require an active internet connection to navigate?</span><span class="tr">Robotun yön bulması için internet bağlantısı gerekiyor mu?</span></summary>
+          <div class="faq-content"><span class="en">No. Once the initial map is built and loaded, all LiDAR SLAM computations and path planning run entirely on the local Raspberry Pi. Internet is only required for optional cloud-based features like speech-to-text processing, but core navigation is 100% offline.</span><span class="tr">Hayır. Harita oluşturulup yüklendikten sonra, tüm LiDAR SLAM hesaplamaları ve rota planlaması tamamen yerel Raspberry Pi üzerinde çalışır. İnternet sadece ses-metin dönüştürme gibi isteğe bağlı özellikler için gereklidir, ancak temel navigasyon %100 çevrimdışıdır.</span></div>
         </details>
         
         <details class="faq-item">
-          <summary>How long does the battery last on a single charge?</summary>
-          <div class="faq-content">Under continuous active navigation (LiDAR spinning, continuous compute, and motor driving), the robot achieves approximately 4-6 hours of runtime. We are currently developing an auto-docking charging station for 24/7 deployment.</div>
+          <summary><span class="en">How long does the battery last on a single charge?</span><span class="tr">Tek bir şarjla pil ne kadar dayanır?</span></summary>
+          <div class="faq-content"><span class="en">Under continuous active navigation (LiDAR spinning, continuous compute, and motor driving), the robot achieves approximately 4-6 hours of runtime. We are currently developing an auto-docking charging station for 24/7 deployment.</span><span class="tr">Sürekli aktif navigasyon altında (dönen LiDAR, sürekli işlem ve motor sürüşü), robot yaklaşık 4-6 saat çalışma süresi sunar. 7/24 kullanım için otomatik kenetlenen bir şarj istasyonu geliştiriyoruz.</span></div>
         </details>
         
         <details class="faq-item">
-          <summary>Can it avoid dynamic obstacles like moving people?</summary>
-          <div class="faq-content">Yes. The RPLidar A2 spins at multiple times per second, providing real-time point clouds. The navigation stack continuously evaluates the path ahead. If a person or sudden obstacle appears, the robot stops or recalculates a safe route around them instantly.</div>
+          <summary><span class="en">Can it avoid dynamic obstacles like moving people?</span><span class="tr">Hareketli insanlar gibi dinamik engellerden kaçınabilir mi?</span></summary>
+          <div class="faq-content"><span class="en">Yes. The RPLidar A2 spins at multiple times per second, providing real-time point clouds. The navigation stack continuously evaluates the path ahead. If a person or sudden obstacle appears, the robot stops or recalculates a safe route around them instantly.</span><span class="tr">Evet. RPLidar A2 saniyede birkaç kez dönerek gerçek zamanlı nokta bulutları sağlar. Navigasyon sistemi önündeki yolu sürekli değerlendirir. Biri veya ani bir engel çıkarsa, robot anında durur veya güvenli bir rotayı yeniden hesaplar.</span></div>
         </details>
         
         <details class="faq-item">
-          <summary>Is the speech interface available in multiple languages?</summary>
-          <div class="faq-content">Currently, the Whisper STT and Piper TTS integration supports English perfectly. However, the models can easily be swapped or extended to support dozens of other languages depending on deployment region.</div>
+          <summary><span class="en">Is the speech interface available in multiple languages?</span><span class="tr">Sesli arayüz birden fazla dilde kullanılabilir mi?</span></summary>
+          <div class="faq-content"><span class="en">Currently, the Whisper STT and Piper TTS integration supports English perfectly. However, the models can easily be swapped or extended to support dozens of other languages depending on deployment region.</span><span class="tr">Şu an için Whisper STT ve Piper TTS entegrasyonu hem İngilizce hem de Türkçe dil desteğine sahip olarak çalışmaktadır. Modeller kullanım bölgesine bağlı olarak onlarca dili destekleyecek şekilde kolayca değiştirilebilir.</span></div>
         </details>
 
       </div>
@@ -1106,9 +1198,9 @@
   <section class="block dark" id="contact">
     <div class="wrap">
       <div class="section-head center reveal">
-        <span class="eyebrow">HIRE US</span>
-        <h2>Need a Custom Robot?</h2>
-        <p>Impressed by our prototype? We are available for custom engineering projects. Let's build the perfect autonomous solution for your institution together.</p>
+        <span class="eyebrow"><span class="en">HIRE US</span><span class="tr">BİZİMLE ÇALIŞIN</span></span>
+        <h2><span class="en">Need a Custom Robot?</span><span class="tr">Özel Bir Robota mı İhtiyacınız Var?</span></h2>
+        <p><span class="en">Impressed by our prototype? We are available for custom engineering projects. Let's build the perfect autonomous solution for your institution together.</span><span class="tr">Prototipimizden etkilendiniz mi? Özel mühendislik projeleri için buradayız. Kurumunuz için mükemmel otonom çözümü birlikte inşa edelim.</span></p>
       </div>
       <div class="contact-cta reveal" style="transition-delay:.08s">
         <a href="mailto:lidar.guided.robot@gmail.com" class="btn btn-outline">
@@ -1207,6 +1299,79 @@
   window.addEventListener('resize', checkRects);
   window.addEventListener('load', checkRects);
   checkRects();
+
+  // ---------- TERMINAL LOGIC ----------
+  const terminalLog = document.getElementById('terminalLog');
+  const logs = [
+    "[SYS] Booting LiDAR-Nav-Robot Core...",
+    "[SYS] Loading configuration from /etc/robot/config.yaml",
+    "[LIDAR] RPLidar A2 connected on /dev/ttyUSB0",
+    "[LIDAR] Spinning up motor. Target: 10Hz",
+    "[LIDAR] Scan data stabilized. Publishing to /scan topic",
+    "[SLAM] KISS-ICP node initialized. Awaiting point cloud...",
+    "[SLAM] First point cloud received. Starting odometry estimation.",
+    "[IMU] MPU-6050 calibrated. Gyro drift: < 0.01 rad/s",
+    "[FUSION] EKF node running. Sensor fusion active.",
+    "[NAV] Loading 2D occupancy grid map: hospital_floor_1.yaml",
+    "[NAV] Map loaded successfully. Resolution: 0.05m/px",
+    "[VOICE] Whisper STT listening for wake word...",
+    "[SYS] System ready. Waiting for user input...",
+    "[VOICE] Wake word detected. Recording audio...",
+    "[VOICE] Recognized: 'Take me to the Radiology department.'",
+    "[NAV] Target acquired: Room 302 (Radiology).",
+    "[PLAN] Running A* algorithm...",
+    "[PLAN] Optimal path found. Distance: 45.2m. Waypoints generated.",
+    "[MOTOR] L298N drivers engaged. Setting velocity to 0.8 m/s.",
+    "[NAV] Navigating to waypoint 1/14...",
+    "[LIDAR] Dynamic obstacle detected at 2.4m.",
+    "[PLAN] Recalculating local trajectory...",
+    "[MOTOR] Adjusting steering. Resuming path."
+  ];
+
+  let logIndex = 0;
+  function addLog() {
+    if (!terminalLog) return;
+    if (logIndex >= logs.length) {
+      logIndex = 0; // Loop logs
+      terminalLog.innerHTML = "";
+    }
+    const line = document.createElement('div');
+    line.className = 'term-line';
+    line.textContent = logs[logIndex];
+    terminalLog.appendChild(line);
+    terminalLog.scrollTop = terminalLog.scrollHeight;
+    logIndex++;
+    
+    // Random delay between 300ms and 1500ms
+    const delay = Math.random() * 1200 + 300;
+    setTimeout(addLog, delay);
+  }
+
+  // Start terminal animation when it comes into view
+  const termObserver = new IntersectionObserver((entries) => {
+    if (entries[0].isIntersecting) {
+      setTimeout(addLog, 1000);
+      termObserver.disconnect();
+    }
+  }, { threshold: 0.5 });
+  if (document.querySelector('.terminal-wrapper')) {
+    termObserver.observe(document.querySelector('.terminal-wrapper'));
+  }
+
+  // ---------- LANGUAGE TOGGLE ----------
+  const langToggleBtn = document.getElementById('langToggleBtn');
+  const htmlTag = document.documentElement;
+
+  // Check saved lang or default to EN
+  const savedLang = localStorage.getItem('siteLang') || 'en';
+  htmlTag.setAttribute('lang', savedLang);
+
+  langToggleBtn.addEventListener('click', () => {
+    const currentLang = htmlTag.getAttribute('lang');
+    const newLang = currentLang === 'en' ? 'tr' : 'en';
+    htmlTag.setAttribute('lang', newLang);
+    localStorage.setItem('siteLang', newLang);
+  });
 
   // ---------- SCROLL TO TOP ----------
   const scrollTopBtn = document.getElementById('scrollTopBtn');
