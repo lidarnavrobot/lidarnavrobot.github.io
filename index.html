@@ -1325,16 +1325,25 @@
     "[NAV] Navigating to waypoint 1/14...",
     "[LIDAR] Dynamic obstacle detected at 2.4m.",
     "[PLAN] Recalculating local trajectory...",
-    "[MOTOR] Adjusting steering. Resuming path."
+    "[MOTOR] Adjusting steering. Resuming path.",
+    "[NAV] Waypoint 14/14 reached.",
+    "[SYS] Destination arrived. Entering standby mode...",
+    "_"
   ];
 
   let logIndex = 0;
   function addLog() {
     if (!terminalLog) return;
     if (logIndex >= logs.length) {
-      logIndex = 0; // Loop logs
-      terminalLog.innerHTML = "";
+      // Bekleme modundan 3 saniye sonra başa sar
+      setTimeout(() => {
+        logIndex = 0;
+        terminalLog.innerHTML = "";
+        addLog();
+      }, 3000);
+      return;
     }
+
     const line = document.createElement('div');
     line.className = 'term-line';
     line.textContent = logs[logIndex];
@@ -1342,8 +1351,8 @@
     terminalLog.scrollTop = terminalLog.scrollHeight;
     logIndex++;
     
-    // Random delay between 300ms and 1500ms
-    const delay = Math.random() * 1200 + 300;
+    // Random delay between 300ms and 1200ms
+    const delay = Math.random() * 900 + 300;
     setTimeout(addLog, delay);
   }
 
